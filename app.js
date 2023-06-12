@@ -34,25 +34,27 @@ session({
 })
 );
 
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'https://a5--lucent-bunny-89c745.netlify.app');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
+
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://a5--lucent-bunny-89c745.netlify.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  const allowedOrigins = ["http://localhost:3000", "https://a5--lucent-bunny-89c745.netlify.app"];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+      res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-const allowedOrigins = ["http://localhost:3000", "https://a5--lucent-bunny-89c745.netlify.app"];
-const origin = req.headers.origin;
-
-if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-}
-
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, PATCH, OPTIONS");
-res.header("Access-Control-Allow-Credentials", "true");
-next();
-
    
 app.use(express.json());
 
