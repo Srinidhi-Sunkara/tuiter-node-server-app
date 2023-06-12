@@ -13,8 +13,7 @@ const app = express()
 
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://tuiter-node-server-app-k5pw.onrender.com/',
-  'https://a5--lucent-bunny-89c745.netlify.app'
+  'https://tuiter-node-server-app-k5pw.onrender.com/'
 ];
 
 // app.use(cors())
