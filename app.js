@@ -12,7 +12,7 @@ import AuthController from "./users/auth-controller.js";
 const app = express()
 
 const allowedOrigins = [
-  // 'http://localhost:3000',
+  'http://localhost:3000',
   'https://tuiter-node-server-app-k5pw.onrender.com/'
 ];
 
@@ -33,7 +33,7 @@ session({
 );
 
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://a5--lucent-bunny-89c745.netlify.app');
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
