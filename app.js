@@ -11,11 +11,16 @@ import AuthController from "./users/auth-controller.js";
 
 const app = express()
 
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://tuiter-node-server-app-k5pw.onrender.com/'
+];
+
 // app.use(cors())
 app.use(
     cors({
       credentials: true,
-      origin: "http://localhost:3000",
+      origin: allowedOrigins,
     })
    );
 
