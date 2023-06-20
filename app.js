@@ -1,13 +1,19 @@
 import express from 'express'
 import cors from 'cors'
 import session from "express-session";
-
+import mongoose from "mongoose";
 
 import HelloController from "./controllers/hello-controller.js"
 import UserController from "./users/users-controller.js"
 import TuitsController from "./controllers/tuits/tuits-controller.js";
 import AuthController from "./users/auth-controller.js";
 
+
+const CONNECTION_STRING = 'mongodb+srv://giuseppi:supersecretpassword@cluster0.u7gfzic.mongodb.net/?retryWrites=true&w=majority'
+mongoose.connect(CONNECTION_STRING);
+
+
+// mongoose.connect("mongodb://127.0.0.1:27017/tuiter");
 
 const app = express()
 

@@ -4,14 +4,14 @@ var currentUserVar;
 
 const AuthController = (app) => {
 
-const register = (req, res) => {
+const register = async (req, res) => {
     const username = req.body.username;
-    const user = usersDao.findUserByUsername(username);
+    const user = await usersDao.findUserByUsername(username);
     if (user) {
         res.sendStatus(409);
         return;
     }
-    const newUser = usersDao.createUser(req.body);
+    const newUser = await usersDao.createUser(req.body);
     req.session["currentUser"] = newUser;
 
     currentUserVar = newUser;
@@ -21,10 +21,10 @@ const register = (req, res) => {
     };
 
      
-const login = (req, res) => {
+const login = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
-    const user = usersDao.findUserByCredentials(username, password);
+    const user = await usersDao.findUserByCredentials(username, password);
     if (user) {
         currentUserVar = user;
         req.session["currentUser"] = user;
